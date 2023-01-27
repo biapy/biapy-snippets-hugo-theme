@@ -1,0 +1,2 @@
+{{ .Scratch.Set "path" ( .Get "path" ) }}<!--
+-->{{ partialCached "references/linktitleref.html" . ( .Scratch.Get "path" ) }}

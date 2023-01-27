@@ -1,0 +1,3 @@
+{{ with .Site.GetPage ( .Scratch.Get "path" ) }}<!--
+--><a href="{{ .Permalink }}">{{ .Title }}</a><!--
+-->{{ end }}

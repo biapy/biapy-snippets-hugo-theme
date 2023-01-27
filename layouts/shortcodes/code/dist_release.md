@@ -1,0 +1,1 @@
+dist_release="$(command lsb_release -rs)"

@@ -1,0 +1,6 @@
+{{- $package := .Get "package" -}}
+  IFS=', ' read -r -a 'packages' {{ safeHTML "<" }} \
+    {{ safeHTML "<" -}}( command dpkg --info "{{- $package -}}" | \
+      command grep 'Depends:' | \
+      command cut --delimiter=' ' --fields=3- )
+  sudo apt-get install --yes "${packages[@]}"

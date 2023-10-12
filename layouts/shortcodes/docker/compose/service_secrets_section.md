@@ -10,13 +10,13 @@ name in the container `/run/secrets` directory):
 ```bash
 while read -r 'secret'; do
   # Add volume declaration if not already present.
-  command yq --inplace 'eval' \
-    ".services.{{ $service }}.secrets |= . + []
-    | with(.services.{{ $service }}.secrets
-          | select( any_c( . == \"${project_name}-${secret}\" ) | not) ;
-      . |= . + [ \"${project_name}-${secret}\" ]
-    )" \
-    "${compose_project_path}/docker-compose.yml"
+command yq --inplace 'eval(load_str("/dev/stdin"))' \
+  "${compose_project_path}/docker-compose.yml" << EOF
+.services.{{ $service }}.secrets |= . + []
+| with(.services.{{ $service }}.secrets | select( any_c( . == "${secret}" ) | not);
+    . |= . + [ "${secret}" ]
+  )
+EOF
 done << EOF
 {{- range $secret := $secrets }}
 {{ $secret }}

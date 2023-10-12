@@ -1,8 +1,13 @@
-<!--
+{{/*
 password_prompt shorcode.
 Add a prompt for user to provide a password for given usage.
-usage: { {% snippets/password_generator prefix="root_" type="password" name="administration" typename="password" zerogen="false" min="16" max="32" chars="[:alnum:]" %} }
--->
+usage:
+
+  {{% snippets/password_generator prefix="root_" type="password"
+    name="administration" typename="password" zerogen="false"
+    min="16" max="32" chars="[:alnum:]" %}}
+
+*/}}
 {{ $prefix := .Get "prefix" }}
 {{ $type := .Get "type" | default "password" }}
 {{ $name := .Get "name" }}

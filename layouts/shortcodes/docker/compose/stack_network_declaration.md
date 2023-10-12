@@ -1,15 +1,20 @@
-{{ $name := .Get "name" }}
+{{ $project_name := .Get "name" | default "${project_name}" }}
+{{ $subnet := .Get "subnet" | default "" }}
 
 Add the stack network declaration:
 
 ```bash
-{{ $name }}_network="${{ htmlEscape "{" }}{{ $name }}_network}" \
-  network_driver="${network_driver}" \
-  command yq --inplace 'eval' \
-    ".networks.\"{{ $name }}\" = {
-      \"name\": \"${{ htmlEscape "{" }}{{ $name }}_network}\",
-      \"driver\": \"${network_driver}\",
-      \"attachable\": true
-    }" \
-  "${compose_project_path}/docker-compose.yml"
+command yq --inplace 'eval(load_str("/dev/stdin"))' \
+  "${compose_project_path}/docker-compose.yml" << EOF
+with(.networks.default;
+    .name = "{{ $project_name }}-net"
+  | .driver = "${network_driver}"
+  | .attachable = true
+{{- if ne $subnet "" }}
+  | .ipam.config = [{
+        "subnet": "{{ $subnet }}"
+      }]
+{{- end }}
+)
+EOF
 ```

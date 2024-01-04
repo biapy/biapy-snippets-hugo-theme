@@ -1,0 +1,1 @@
+dist_codename="$(command ubuntu-distro-info --lts)"

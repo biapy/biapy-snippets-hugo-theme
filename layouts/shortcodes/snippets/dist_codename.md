@@ -1,5 +1,5 @@
 Detect the distribution version codename:
 
 ```bash
-dist_codename="$(command lsb_release -cs)"
+dist_codename="$(command lsb_release --codename --short)"
 ```

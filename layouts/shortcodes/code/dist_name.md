@@ -1,2 +1,2 @@
-dist_name="$(command lsb_release -is \
-      | command tr '[:upper:]' '[:lower:'])"
+dist_name="$(command lsb_release --id --short \
+      | command tr '[:upper:]' '[:lower:]')"

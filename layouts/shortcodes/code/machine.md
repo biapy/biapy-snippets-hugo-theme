@@ -1,0 +1,1 @@
+machine="$(command uname --machine)"

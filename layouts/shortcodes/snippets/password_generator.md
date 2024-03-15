@@ -14,7 +14,7 @@ usage:
 {{ $type_name := .Get "typename" | default "password" }}
 {{ $min := int ( .Get "min" | default "16" ) }}
 {{ $max := int ( .Get "max" | default "32" ) }}
-{{ $chars := .Get "chars" | default "[:alnum:]#$%&()*+,-./:<=>?@[\\]^_{|}~" }}
+{{ $chars := .Get "chars" | default "[:alnum:]#$%&()*+,-.<=>?@[\\]^_{|}~" }}
 {{ $random_needed := "" }}
 {{ $random_test := "" }}
 {{- if not ( eq ( .Get "zerogen" ) "false" ) -}}

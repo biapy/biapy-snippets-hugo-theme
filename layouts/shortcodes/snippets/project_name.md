@@ -1,4 +1,4 @@
-{{ $name := .Get "name" | default "${domain//./-}" }}
+{{ $name := .Get "name" | default (.Get 0) | default "${domain//./-}" }}
 
 Set the project name:
 

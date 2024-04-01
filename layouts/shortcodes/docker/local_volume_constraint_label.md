@@ -7,5 +7,5 @@ signaling that it stores the data (in a local Docker volume):
 ```bash
 [[ "${swarm_node}" = 'yes' ]] && \
   command docker node update --label-add "${project_name}.data=true" \
-    "$(command docker info --format '{{ htmlEscape "{" }}{.Swarm.NodeID}}')"
+    "$(command docker info --format '{{ "{{" }}.Swarm.NodeID}}')"
 ```

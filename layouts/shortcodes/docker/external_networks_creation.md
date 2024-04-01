@@ -13,7 +13,7 @@ while read -r 'network_name'; do
         --attachable "${network_name}"
 done {{ safeHTML "<<" }} EOF
 {{- range $network := $networks }}
-${{ htmlEscape "{" }}{{ $network }}}
+${{ "{" }}{{ $network }}}
 {{- end }}
 EOF
 ```

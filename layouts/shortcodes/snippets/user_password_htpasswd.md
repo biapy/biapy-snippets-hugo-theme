@@ -5,6 +5,6 @@ Generate a `htpasswd` entry for {{ $name }}:
 
 ```bash
 {{$prefix}}htpasswd="$(
-  command htpasswd -niB "${{ htmlEscape "{" }}{{$prefix}}username}" <<< "${{ htmlEscape "{" }}{{$prefix}}password}"
+  command htpasswd -niB "${{ "{" }}{{$prefix}}username}" <<< "${{ "{" }}{{$prefix}}password}"
 )"
 ```

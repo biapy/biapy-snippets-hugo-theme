@@ -1,8 +1,8 @@
-<!--
+{{/*
 password_prompt shortcode.
 Add a prompt for user to provide a password for given usage.
 usage: { {% snippets/password_prompt prefix="root_" name="administration" zerogen="false" %} }
--->
+*/}}
 {{ $prefix := .Get "prefix" }}
 {{ $name := .Get "name" }}
 {{ $random_desc := "" }}
@@ -19,10 +19,10 @@ Set the {{$name}} password{{$random_desc}}:
 ```bash
 command read -s -p 'Enter the {{$name}} password{{$random_prompt}}:' '{{$prefix}}password' \
   && command echo \
-  && if [ -n "${{ htmlEscape "{" }}{{$prefix}}password}" ]; then
+  && if [ -n "${{ "{" }}{{$prefix}}password}" ]; then
     command read -s -p 'Please confirm the password:' 'confirm_password'
     command echo
-    if [ "${{ htmlEscape "{" }}{{$prefix}}password}" != "${confirm_password}" ]; then
+    if [ "${{ "{" }}{{$prefix}}password}" != "${confirm_password}" ]; then
       {{$prefix}}password=''
       command echo "Error: passwords do not match.{{$random_action}}"
     fi

@@ -1,4 +1,4 @@
-<!--
+{{/*
 docker/compose/local_volume_declaration shortcode.
 Add a local volume to docker-compose.yml file.
 usage:
@@ -10,7 +10,7 @@ usage:
   oder_volume:Other volume comment
   { {% / docker/compose/local_volume_declaration %} }
 
--->
+*/}}
 #### Volumes
 
 Declare the volumes used by the stack:

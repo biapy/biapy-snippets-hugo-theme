@@ -1,9 +1,9 @@
-<!--
+{{/*
 user_password_prompt shortcode.
 Add a username setting.
 Add a prompt for user to provide a password for username.
 usage: { {% snippets/user_password_prompt prefix="root_" name="administration" zerogen="false" %} }
--->
+*/}}
 {{ $prefix := .Get "prefix" }}
 {{ $name := .Get "name" }}
 {{ $username := .Get "username" | default "admin" }}
@@ -25,12 +25,12 @@ Set the {{$name}} username:
 Set the {{$name}} password{{$random_desc}}:
 
 ```bash
-command read -s -p 'Enter '${{ htmlEscape "{" }}{{$prefix}}username}' account password{{$random_prompt}}:' '{{$prefix}}password' \
+command read -s -p 'Enter '${{ "{" }}{{$prefix}}username}' account password{{$random_prompt}}:' '{{$prefix}}password' \
   && command echo \
-  && if [ -n "${{ htmlEscape "{" }}{{$prefix}}password}" ]; then
+  && if [ -n "${{ "{" }}{{$prefix}}password}" ]; then
     command read -s -p 'Please confirm password:' 'confirm_password'
     command echo
-    if [ "${{ htmlEscape "{" }}{{$prefix}}password}" != "${confirm_password}" ]; then
+    if [ "${{ "{" }}{{$prefix}}password}" != "${confirm_password}" ]; then
       {{$prefix}}password=''
       command echo "Error: passwords do not match.{{$random_action}}"
     fi

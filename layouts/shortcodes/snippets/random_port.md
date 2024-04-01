@@ -1,8 +1,8 @@
-<!--
+{{/*
 random_port shortcode.
 Select a random available port
 usage: { {% snippets/random_port prefix="random_" %} }
--->
+*/}}
 {{ $prefix := .Get "prefix" | default "random_" }}
 
 Select a random available port:

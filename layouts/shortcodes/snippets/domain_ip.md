@@ -1,4 +1,4 @@
-<!--
+{{/*
 domain_ip shortcode.
 Detect IP address of given domain, using dig
 usage:
@@ -7,7 +7,7 @@ usage:
         domain="${domain}"
         hide-text="false"
     %} }
--->
+*/}}
 {{ $prefix := .Get "prefix" | default "domain_" }}
 {{ $domain := .Get "domain" | default "${domain}" }}
 {{ $hide_text := .Get "hide-text" | default "false" }}

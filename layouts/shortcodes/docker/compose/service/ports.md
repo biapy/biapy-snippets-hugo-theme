@@ -1,4 +1,4 @@
-<!--
+{{/*
 
 Adds port configuration to a `docker-compose.yml`` service.
 
@@ -10,7 +10,7 @@ Usage:
 :1704/udp:1704/udp
 { {% / docker/compose/service/ports %} }
 
--->
+*/}}
 {{- $service := .Get "service" | default "${project_name}" -}}
 
 ###### Exposed ports {#{{ $service }}-service-exposed-ports}

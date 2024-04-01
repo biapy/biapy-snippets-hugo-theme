@@ -1,8 +1,8 @@
-<!--
+{{/*
 apt-key-remove shortcode.
 Remove key containing the given name from /etc/apt/trusted.gpg
 usage: { {% snippets/deb/apt-key-remove name="<domain.com>" %} }
--->
+*/}}
 {{ $name := .Get "name" }}
 
 Remove the repository key from `trusted.gpg`:

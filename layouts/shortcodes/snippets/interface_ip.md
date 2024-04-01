@@ -1,4 +1,4 @@
-<!--
+{{/*
 interface_ip shortcode.
 Detect IP address of given interface
 
@@ -9,7 +9,7 @@ Detect IP address of given interface
 
 usage: { {% snippets/interface_ip prefix="interface_" interface="eth0"
                 hide-text="false" with-mask="false" %} }
--->
+*/}}
 {{ $prefix := .Get "prefix" | default "interface_" }}
 {{ $interface := .Get "interface" }}
 {{ $with_mask := .Get "with-mask" | default "false" }}

@@ -6,4 +6,4 @@ php_version="$( command php --version | \
   command cut --delimiter=' ' --fields=2 )"
 ```
 
-<!-- php_version="$(readlink -f /usr/bin/php | cut -c 13-)" -->
+{{/* php_version="$(readlink -f /usr/bin/php | cut -c 13-)" */}}

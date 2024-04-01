@@ -1,4 +1,4 @@
-<!--
+{{/*
 
 Adds networks configuration to a `docker-compose.yml`` service.
 
@@ -7,7 +7,7 @@ Usage:
 { {% docker/compose/service_networks_section service="<service-name>"
   networks="<service-network-name>,mariadb,prometheus" %} }
 
--->
+*/}}
 {{ $service := .Get "service" | default "${project_name}" }}
 {{ $networks := ( split ( .Get "networks" ) "," ) }}
 

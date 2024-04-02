@@ -6,7 +6,7 @@
     "style": "backtick"
   },
   "emphasis-style": {
-    "style": "asterisk"
+    "style": "underscore"
   },
   "fenced-code-language": {
     "allowed_languages": [

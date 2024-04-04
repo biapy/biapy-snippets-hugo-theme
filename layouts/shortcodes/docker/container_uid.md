@@ -5,17 +5,18 @@ Detect an user id in a Docker image.
 Usage:
 
 {{% docker/container_uid "company/image:latest" %}}
-{{% docker/container_uid user="root" "company/image:latest" %}}
+{{% docker/container_uid user="root" image="company/image:latest" %}}
 
 */}}
-{{ if isset .Params "user" }}
-{{ $user := .Get "user" }}
+{{ $image := .Get "image" | default (.Get 0) }}
+{{ $user := .Get "user" | default false }}
+{{ if $user }}
 
-Detect the user `{{ $user }}`'s id in the Docker image:
+Detect the `{{ $user }}` user's id in the Docker image:
 
 ```bash
 container_uid="$(docker run --rm --entrypoint='/usr/bin/id' \
-  "{{ .Get 0 }}" -u {{ $user }})"
+  "{{ $image }}" -u "{{ $user }})"
 ```
 
 {{ else }}
@@ -23,7 +24,7 @@ container_uid="$(docker run --rm --entrypoint='/usr/bin/id' \
 Detect the default user's id in the Docker image:
 
 ```bash
-container_uid="$(docker run --rm --entrypoint='/usr/bin/id' "{{ .Get 0 }}" -u)"
+container_uid="$(docker run --rm --entrypoint='/usr/bin/id' "{{ $image }}" -u)"
 ```
 
 {{ end }}

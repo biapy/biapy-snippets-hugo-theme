@@ -7,7 +7,7 @@ Usage:
 {{% docker/compose/no-replicas service="service-name" %}}
 
 */}}
-{{ $service := .Get "service" | default "${project_name}" }}
+{{ $service := .Get "service" | default "${service_name}" }}
 
 Disable the service deployment, a scheduler manage the service:
 

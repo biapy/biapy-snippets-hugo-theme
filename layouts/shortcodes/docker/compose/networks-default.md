@@ -26,7 +26,7 @@ Usage:
 {{ $driver := .Get "driver" | default "${network_driver:-bridge}" }}
 {{ $subnet := .Get "subnet" }}
 
-Add the stack network declaration:
+Set the default network name, and configure it to accept external containers:
 
 ```bash
 command yq --inplace 'eval(load_str("/dev/stdin"))' "${compose_file}" <<EOF

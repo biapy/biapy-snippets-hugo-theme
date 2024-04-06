@@ -16,7 +16,7 @@ Declare the configuration files this Compose file's services use:
 command yq --inplace 'eval(load_str("/dev/stdin"))' "${compose_file}" <<EOF
   .configs |= . + {}
 {{- range $file := .Params }}
-| .configs."{{ path.Base$file }}".file = "{{ $file }}"
+| .configs."{{ path.Base $file }}".file = "{{ $file }}"
 {{- end }}
 EOF
 ```

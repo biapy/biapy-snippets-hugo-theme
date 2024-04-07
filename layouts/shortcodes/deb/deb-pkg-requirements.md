@@ -8,5 +8,5 @@ IFS=', ' read -r -a 'packages' {{ safeHTML "<" }} \
     command grep 'Depends:' | \
     command cut --delimiter=' ' --fields=3- | \
     command sed -e 's/ ([^)]*)//g' )
-sudo apt-get install "${packages[@]}"
+sudo apt install "${packages[@]}"
 ```

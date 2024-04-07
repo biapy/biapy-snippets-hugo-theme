@@ -1,8 +1,15 @@
 {{/*
 user_password_prompt shortcode.
-Add a username setting.
-Add a prompt for user to provide a password for username.
-usage: { {% snippets/user_password_prompt prefix="root_" name="administration" zerogen="false" %} }
+Add a username setting, and prompt for a password, with a confirmation.
+
+usage:
+
+{{% settings/user_password_prompt
+  prefix="root_"
+  name="administration"
+  username="admin"
+  zerogen="false" %}}
+
 */}}
 {{ $prefix := .Get "prefix" }}
 {{ $name := .Get "name" }}
@@ -19,7 +26,7 @@ usage: { {% snippets/user_password_prompt prefix="root_" name="administration" z
 Set the {{$name}} username:
 
 ```bash
-{{$prefix}}username='{{ $username }}'
+{{ $prefix }}username='{{ $username }}'
 ```
 
 Set the {{$name}} password{{$random_desc}}:

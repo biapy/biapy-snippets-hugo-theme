@@ -1,16 +1,25 @@
 {{/*
-apt-install shortcode.
 
 Call apt-get install for the given packages
 
-usage: { {% snippets/deb/apt-install packages="software-one,software-two" %} }
+usage:
+
+{{% deb/apt-install "software-one" "software-two" %}}
+
 */}}
-{{ $packages := ( split ( .Get "packages" ) "," ) }}
+{{- if (not .Params) -}}
+  {{- errorf "The %q shortcode requires at list a package name as parameter. See %s" .Name .Position -}}
+{{- end -}}
+{{- .Scratch.Set "length" 19 -}}
 
 Install the software:
 
 ```bash
-sudo apt 'install' {{- range $index, $package := $packages }} {{- if (and (not (eq $index 0)) (modBool $index 2)) }} \
+sudo apt 'install'
+{{- range $package := .Params }}
+{{- $.Scratch.Add "length" ( add 1 ($package | len)) -}}
+{{- if (gt ($.Scratch.Get "length") 78) -}}
+{{- $.Scratch.Set "length" ( add 2 ($package | len)) }} \
  {{ end }} "{{$package}}"
 {{- end }}
 ```

@@ -15,6 +15,7 @@ Usage:
 Store the Docker stack’s secrets in files:
 
 ```bash
+command mkdir --parent "${compose_project_path}/secrets" &&
 for secret in (
   {{- range $name := .Params }} "{{ $name }}"{{ end }} ); do
   secret_file="${compose_project_path}/secrets/${secret}.secret"

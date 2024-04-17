@@ -9,6 +9,12 @@ Usage:
   cert="software-code-ssl-cert"
   host="${domain} software-code localhost" %}}
 
+or, with a custom description:
+
+{{% docker/secrets-mkcert description="Create the service's SSL certificate:"
+  key="software-code-ssl-key" cert="software-code-ssl-cert"
+  host="${domain} software-code localhost" %}}
+
 */}}
 {{- $key := .Get "key" | default false -}}
 {{- $cert := .Get "cert" | default false -}}
@@ -31,7 +37,11 @@ Usage:
   -}}
 {{- end -}}
 
-Create the service SSL certificate:
+{{ with .Get "description" -}}
+{{ . }}
+{{- else -}}
+Create the service's SSL certificate:
+{{- end }}
 
 ```bash
 command mkdir --parent "${compose_project_path}/secrets" &&

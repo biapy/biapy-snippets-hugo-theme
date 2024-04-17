@@ -16,7 +16,7 @@ or:
 
 */}}
 
-Allow the container's user to read secrets  files:
+Allow the container's user to read secrets files:
 
 {{ with .Params -}}
 

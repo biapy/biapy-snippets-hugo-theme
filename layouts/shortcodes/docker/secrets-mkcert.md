@@ -1,0 +1,41 @@
+{{/*
+
+Generate a self-signed certificate using mkcert, and store it in
+Docker Compose project's secrets folder.
+
+Usage:
+
+{{% docker/secrets-mkcert key="software-code-ssl-key"
+  cert="software-code-ssl-cert"
+  host="${domain} software-code localhost" %}}
+
+*/}}
+{{- $key := .Get "key" | default false -}}
+{{- $cert := .Get "cert" | default false -}}
+{{- $hosts := ( collections.Apply
+  (strings.Split ( .Get "hosts" | default "" ) " ")
+  "strings.Trim" "." " \t\r\n" ) | complement (slice "")
+-}}
+{{- if or (not $cert) (not $key) -}}
+  {{-
+    errorf
+    "The %q shortcode requires 'key' and 'cert' parameters. See %s"
+    .Name .Position
+  -}}
+{{- end -}}
+{{- if not $hosts -}}
+  {{-
+    errorf
+    "The %q shortcode requires at least one domain in 'hosts' parameter. See %s"
+    .Name .Position
+  -}}
+{{- end -}}
+
+Create the service SSL certificate:
+
+```bash
+command mkdir --parent "${compose_project_path}/secrets" &&
+command mkcert -key-file="${compose_project_path}/secrets/{{ $key }}.secret" \
+  -cert-file="${compose_project_path}/secrets/{{ $cert }}.secret" \
+ {{ range $host := $hosts }} "{{ $host }}"{{ end }}
+```

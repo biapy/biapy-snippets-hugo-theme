@@ -22,9 +22,9 @@ Install the software:
 {{- $command -}}
 {{- .Scratch.Set "length" ($command | len) -}}
 {{- range $package := .Params }}
-{{- $.Scratch.Add "length" ( add 1 ($package | len)) -}}
+{{- $.Scratch.Add "length" ( add 3 ($package | len)) -}}
 {{- if (gt ($.Scratch.Get "length") 78) -}}
-{{- $.Scratch.Set "length" ( add 2 ($package | len)) }} \
+{{- $.Scratch.Set "length" ( add 4 ($package | len)) }} \
  {{ end }} "{{ $package }}"
 {{- end }}
 ```

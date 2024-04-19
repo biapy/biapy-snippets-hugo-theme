@@ -13,6 +13,9 @@ max_line_length = 80
 indent_size = 2
 indent_style = space
 
+[layouts/shortcodes/code/*.md]
+insert_final_newline = false
+
 [*.html]
 max_line_length = 80
 indent_size = 2

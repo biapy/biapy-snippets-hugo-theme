@@ -1,26 +1,41 @@
 # cSpell Settings
 # language - current active spelling language
-language: "en"
-languageSettings:
-  - languageId: "md,bash"
-    locale:
-      - "en-US"
-      - "fr-FR"
-    dictionaries:
-      - "wordsEn"
-      - "companies"
-      - "typescript"
-      - "bash"
-      - "php"
-      - "vale-biapy-accept"
-    dictionaryDefinitions:
-      - name: "vale-biapy-accept"
-        path: ".vale/styles/Vocab/biapy-helpdesk/accept.txt"
-
+language: "en,fr"
 # words - list of words to be always considered correct
-words: []
+words: ["landure", "Landuré", "biapy", "lastmod", "dists"]
 # flagWords - list of words to be always considered incorrect
 # This is useful for offensive words and common spelling errors.
 # For example "hte" should be "the"
 flagWords: []
-
+languageSettings:
+  - languageId: md
+    dictionaries:
+      - en_us
+      - en-common-misspellings
+      - software-terms
+      - fr-reforme
+      - markdown
+      - html
+      - html-symbol-entities
+      - lorem-ipsum
+      - css
+      - fonts
+      - node
+      - typescript
+      - npm
+      - svelte
+      - vue
+      - public-licenses
+      - git
+      - docker
+      - makefile
+      - shell
+      - bash
+      - powershell
+      - sql
+      - php
+      - python
+      - django
+      - golang
+      - data-science
+      - terraform

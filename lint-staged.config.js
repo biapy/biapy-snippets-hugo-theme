@@ -1,4 +1,4 @@
 module.exports = {
   "packages.json": "npm audit",
-  "*.md": ["markdownlint-cli", "cspell lint", "vale"],
+  "*.md": ["npx markdownlint-cli", "npx cspell lint", "vale"],
 };

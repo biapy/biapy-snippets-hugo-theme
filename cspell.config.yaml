@@ -1,0 +1,87 @@
+# cSpell Settings
+# language - current active spelling language
+language: "en,fr"
+# words - list of words to be always considered correct
+words:
+  - "landure"
+  - "Landuré"
+  - "biapy"
+  - "lastmod"
+  - "errorf"
+  - "shortcode"
+# flagWords - list of words to be always considered incorrect
+# This is useful for offensive words and common spelling errors.
+# For example "hte" should be "the"
+flagWords: []
+import:
+  - '@cspell/dict-en_us/cspell-ext.json'
+  - '@cspell/dict-en-common-misspellings/cspell-ext.json'
+  - '@cspell/dict-software-terms/cspell-ext.json'
+  - '@cspell/dict-fr-fr/cspell-ext.json'
+  - '@cspell/dict-fr-reforme/cspell-ext.json'
+  - '@cspell/dict-markdown/cspell-ext.json'
+  - '@cspell/dict-html/cspell-ext.json'
+  - '@cspell/dict-html-symbol-entities/cspell-ext.json'
+  - '@cspell/dict-lorem-ipsum/cspell-ext.json'
+  - '@cspell/dict-css/cspell-ext.json'
+  - '@cspell/dict-fonts/cspell-ext.json'
+  - '@cspell/dict-node/cspell-ext.json'
+  - '@cspell/dict-typescript/cspell-ext.json'
+  - '@cspell/dict-npm/cspell-ext.json'
+  - '@cspell/dict-svelte/cspell-ext.json'
+  - '@cspell/dict-vue/cspell-ext.json'
+  - '@cspell/dict-public-licenses/cspell-ext.json'
+  - '@cspell/dict-git/cspell-ext.json'
+  - '@cspell/dict-docker/cspell-ext.json'
+  - '@cspell/dict-makefile/cspell-ext.json'
+  - '@cspell/dict-shell/cspell-ext.json'
+  - '@cspell/dict-bash/cspell-ext.json'
+  - '@cspell/dict-powershell/cspell-ext.json'
+  - '@cspell/dict-sql/cspell-ext.json'
+  - '@cspell/dict-php/cspell-ext.json'
+  - '@cspell/dict-python/cspell-ext.json'
+  - '@cspell/dict-django/cspell-ext.json'
+  - '@cspell/dict-golang/cspell-ext.json'
+  - '@cspell/dict-data-science/cspell-ext.json'
+  - '@cspell/dict-terraform/cspell-ext.json'
+languageSettings:
+  - languageId: md
+    dictionaries:
+      - en_us
+      - softwareTerms
+      - networking-terms
+      - web-services
+      - computing-acronyms
+      - fr-fr
+      - fr-fr-90
+      - markdown
+      - html
+      - html-symbol-entities
+      - lorem-ipsum
+      - css
+      - fonts
+      - node
+      - typescript
+      - npm
+      - svelte
+      - public-licenses
+      - git
+      - docker
+      - makefile
+      - bash
+      - shellscript
+      - bash
+      - powershell
+      - sql
+      - php
+      - python
+      - python-common
+      - django
+      - golang
+      - data-science
+      - data-science-models
+      - data-science-tools
+      - terraform
+      - en-us-common-misspellings
+      - en-common-misspellings
+

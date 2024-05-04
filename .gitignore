@@ -4,3 +4,14 @@
 
 # Dependency directories
 node_modules/
+
+# Vale packages
+/.vale/styles/alex
+/.vale/styles/Google
+/.vale/styles/Microsoft
+/.vale/styles/proselint
+/.vale/styles/Readability
+/.vale/styles/RedHat
+/.vale/styles/write-good
+/.vale/styles/Joblint
+/.vale/styles/.vale-config/3-Hugo.ini

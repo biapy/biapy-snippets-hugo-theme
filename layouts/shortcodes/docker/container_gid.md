@@ -8,14 +8,28 @@ Usage:
 {{% docker/container_gid group="root" image="company/image:latest" %}}
 
 */}}
-{{ $image := .Get "image" | default (.Get 0) }}
-{{ $group := .Get "group" | default false }}
+{{- $image := .Get "image" | default (.Get 0 | default false) -}}
+{{- $group := .Get "group" | default false -}}
+{{- if (and (not .IsNamedParams) (ne 1 (.Params | len))) -}}
+  {{-
+    errorf
+    "The %q shortcode requires one unnamed parameter. See %s"
+    .Name .Position
+  -}}
+{{- end -}}
+{{- if (not $image) -}}
+  {{-
+    errorf
+    "The %q shortcode requires 'image' parameter. See %s"
+    .Name .Position
+  -}}
+{{- end -}}
 {{ if $group }}
 
 Detect the `{{ $group }}` group's id in the Docker image:
 
 ```bash
-container_uid="$(docker run --rm --entrypoint='/usr/bin/id' \
+container_gid="$(docker run --rm --entrypoint='/usr/bin/id' \
   "{{ $image }}" -g "{{ $group }})"
 ```
 
@@ -24,7 +38,7 @@ container_uid="$(docker run --rm --entrypoint='/usr/bin/id' \
 Detect the default group's id in the Docker image:
 
 ```bash
-container_uid="$(docker run --rm --entrypoint='/usr/bin/id' "{{ $image }}" -g"
+container_gid="$(docker run --rm --entrypoint='/usr/bin/id' "{{ $image }}" -g)"
 ```
 
 {{ end }}

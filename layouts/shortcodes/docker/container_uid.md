@@ -8,8 +8,22 @@ Usage:
 {{% docker/container_uid user="root" image="company/image:latest" %}}
 
 */}}
-{{ $image := .Get "image" | default (.Get 0) }}
+{{ $image := .Get "image" | default (.Get 0 | default false) }}
 {{ $user := .Get "user" | default false }}
+{{- if (and (not .IsNamedParams) (ne 1 (.Params | len))) -}}
+  {{-
+    errorf
+    "The %q shortcode requires one unnamed parameter. See %s"
+    .Name .Position
+  -}}
+{{- end -}}
+{{- if (not $image) -}}
+  {{-
+    errorf
+    "The %q shortcode requires 'image' parameter. See %s"
+    .Name .Position
+  -}}
+{{- end -}}
 {{ if $user }}
 
 Detect the `{{ $user }}` user's id in the Docker image:

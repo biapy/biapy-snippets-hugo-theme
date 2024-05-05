@@ -11,6 +11,13 @@ Usage:
 %}}
 
 */}}
+{{- if (not .Params) -}}
+  {{-
+    errorf
+    "The %q shortcode requires at least one parameter. See %s"
+    .Name .Position
+  -}}
+{{- end -}}
 
 Declare the secrets this Compose file's services use:
 

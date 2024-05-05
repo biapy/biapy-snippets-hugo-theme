@@ -10,11 +10,18 @@ Usage:
 %}}
 
 */}}
+{{- if or (not .IsNamedParams) (not .Params) -}}
+  {{-
+    errorf
+    "The %q shortcode requires at least one named parameter. See %s"
+    .Name .Position
+  -}}
+{{- end -}}
 
 Declare the volumes used by this Compose file's services:
 
 ```bash
-command yq --inplace 'eval(load_str("/dev/stdin"))' "${compose_file}" <<EOF
+{{ partialCached "docker/yq-compose-file.md" . }} <<EOF
   .volumes |= . + {}
 {{- range $name, $description := .Params }}
 | .volumes.{{ $name }}.driver = "local"

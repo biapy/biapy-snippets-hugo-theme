@@ -20,6 +20,8 @@ Usage:
   {{% docker/compose/networks-default name="${project_name}-net"
         subnet="172.0.34.0/24" %}}
 
+cSpell:ignore ipam
+
 */}}
 
 {{ $name := .Get "name" | default "${project_name}-net" }}
@@ -29,7 +31,7 @@ Usage:
 Set the default network name, and configure it to accept external containers:
 
 ```bash
-command yq --inplace 'eval(load_str("/dev/stdin"))' "${compose_file}" <<EOF
+{{ partialCached "docker/yq-compose-file.md" . }} <<EOF
 with(.networks.default;
     .name = "{{ $name }}"
   | .driver = "{{ $driver }}"

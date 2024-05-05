@@ -20,12 +20,21 @@ or:
   prometheus="${prometheus_network:-prometheus-net}"
 %}}
 
+cSpell:ignore traefik mariadb postgres prometheus
+
 */}}
+{{- if or (not .IsNamedParams) (not .Params) -}}
+  {{-
+    errorf
+    "The %q shortcode requires at least one parameter. See %s"
+    .Name .Position
+  -}}
+{{- end -}}
 
 Declare the external networks this Compose file's services connect to:
 
 ```bash
-command yq --inplace 'eval(load_str("/dev/stdin"))' "${compose_file}" <<EOF
+{{ partialCached "docker/yq-compose-file.md" . }} <<EOF
   .networks |= . + {}
 {{- range $alias, $name := .Params }}
 | .networks.{{ $alias }} = { "name": "{{ $name }}", "external": true }

@@ -11,10 +11,10 @@ Usage:
 %}}
 
 */}}
-{{- if (not .Params) -}}
+{{- if or .IsNamedParams (not .Params) -}}
   {{-
     errorf
-    "The %q shortcode requires at least one parameter. See %s"
+    "The %q shortcode requires at least one unnamed parameter. See %s"
     .Name .Position
   -}}
 {{- end -}}
@@ -22,7 +22,7 @@ Usage:
 Declare the secrets this Compose file's services use:
 
 ```bash
-command yq --inplace 'eval(load_str("/dev/stdin"))' "${compose_file}" <<EOF
+{{ partialCached "docker/yq-compose-file.md" . }} <<EOF
   .secrets |= . + {}
 {{- range $name := .Params }}
 | .secrets.{{ $name }}.file = "secrets/{{ $name }}.secret"

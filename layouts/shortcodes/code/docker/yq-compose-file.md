@@ -11,4 +11,11 @@ EOF
 ```
 
 */}}
-command yq --inplace 'eval(load_str("/dev/stdin"))' "${compose_file}"
+{{- if .Params -}}
+  {{-
+    errorf
+    "The %q shortcode requires doesn't accept parameters. See %s"
+    .Name .Position
+  -}}
+{{- end -}}
+{{- partialCached "docker/yq-compose-file.md" . -}}

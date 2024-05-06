@@ -12,6 +12,11 @@ or
   {{% docker/compose/service/networks service="${service_name}"
     networks="default traefik mariadb postgres prometheus" %}}
 
+or
+
+  {{% docker/compose/service/networks service="${service_name}"
+    networks="default,traefik,mariadb,postgres,prometheus" %}}
+
 cSpell:ignore traefik mariadb postgres prometheus
 
 */}}
@@ -19,8 +24,11 @@ cSpell:ignore traefik mariadb postgres prometheus
 {{- $networks := slice -}}
 {{- if .IsNamedParams -}}
   {{- $networks = ( collections.Apply
-    (strings.Split ( .Get "networks" | default "" ) " ")
-    "strings.Trim" "." " \t\r\n" ) | complement (slice "")
+    ( strings.Split
+      ( strings.Replace ( .Get "networks" | default "" ) "," " " )
+      " "
+    )
+    "strings.Trim" "." " \t\r\n" ) | complement ( slice "" )
   -}}
 {{- else -}}
   {{- $networks = collections.After 1 .Params -}}

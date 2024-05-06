@@ -33,7 +33,7 @@ cSpell:ignore traefik mariadb postgres prometheus
   -}}
 {{- end -}}
 
-Assign networks to the `{{ $service }}` service:
+Attach the `{{ $service }}` service to its networks:
 
 ```bash
 {{ partialCached "docker/yq-compose-file.md" . }} <<EOF

@@ -40,7 +40,7 @@ or, with a custom description:
 {{ with .Get "description" -}}
 {{ . }}
 {{- else -}}
-Create the service's SSL certificate:
+Create the service's SSL/TLS certificate:
 {{- end }}
 
 ```bash

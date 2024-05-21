@@ -42,7 +42,7 @@ Declare mount points of the `{{ $service }}` service's volumes:
 {{ partialCached "docker/yq-compose-file.md" . }} <<EOF
 .services.{{ $service }}.volumes |= . + [
 {{- if $timezone }}
-  "etc/timezone:/etc/timezone:ro",
+  "/etc/timezone:/etc/timezone:ro",
   "/etc/localtime:/etc/localtime:ro",
 {{- end }}
 {{- $firstVolume := true }}

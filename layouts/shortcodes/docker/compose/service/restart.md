@@ -8,19 +8,30 @@ Either:
 
 Usage:
 
-{{% docker/compose/restart_policy service="service-name" %}}
+{{% docker/compose/service/restart "service-name" %}}
+
+or:
+
+{{% docker/compose/service/restart service="service-name" %}}
 
 */}}
-{{ $service := .Get "service" | default "${service_name}" }}
+{{- $service := .Get "service" | default (.Get 0 | default false) -}}
+{{- if not $service -}}
+  {{-
+    errorf
+    "The %q shortcode requires a 'service' name. See %s"
+    .Name .Position
+  -}}
+{{- end -}}
 
 Configure the `{{ $service }}` service to restart in case of failure:
 
 ```bash
-[[ "${swarm_node}" != 'yes' ]]; &&
+[[ "${swarm_node}" != 'yes' ]] &&
   {{ partialCached "docker/yq-compose-file.md" . }} <<EOF
 .services.{{ $service }}.restart = "unless-stopped"
 EOF
-[[ "${swarm_node}" = 'yes' ]]; &&
+[[ "${swarm_node}" = 'yes' ]] &&
   {{ partialCached "docker/yq-compose-file.md" . }} <<EOF
 .services.{{ $service }}.deploy.restart_policy= {
   "condition": "any", "delay": "5s", "max_attempts": 3, "window": "120s"

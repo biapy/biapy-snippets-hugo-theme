@@ -26,7 +26,7 @@ Usage:
 {{- end -}}
 {{ if $group }}
 
-Detect the `{{ $group }}` group's id in the Docker image:
+Detect the `{{ $group }}` group's id in the `{{ $image }}` _Docker_ image:
 
 ```bash
 container_gid="$(docker run --rm --entrypoint='/usr/bin/id' \
@@ -35,7 +35,7 @@ container_gid="$(docker run --rm --entrypoint='/usr/bin/id' \
 
 {{ else }}
 
-Detect the default group's id in the Docker image:
+Detect the default group's id in the `{{ $image }}` _Docker_ image:
 
 ```bash
 container_gid="$(docker run --rm --entrypoint='/usr/bin/id' "{{ $image }}" -g)"

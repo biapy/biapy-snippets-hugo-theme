@@ -26,7 +26,7 @@ Usage:
 {{- end -}}
 {{ if $user }}
 
-Detect the `{{ $user }}` user's id in the Docker image:
+Detect the `{{ $user }}` user's id in the `{{ $image }}` _Docker_ image:
 
 ```bash
 container_uid="$(docker run --rm --entrypoint='/usr/bin/id' \
@@ -35,7 +35,7 @@ container_uid="$(docker run --rm --entrypoint='/usr/bin/id' \
 
 {{ else }}
 
-Detect the default user's id in the Docker image:
+Detect the default user's id in the `{{ $image }}` _Docker_ image:
 
 ```bash
 container_uid="$(docker run --rm --entrypoint='/usr/bin/id' "{{ $image }}" -u)"

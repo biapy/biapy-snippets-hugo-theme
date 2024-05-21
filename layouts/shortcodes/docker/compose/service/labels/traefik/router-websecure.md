@@ -35,7 +35,7 @@ cSpell:ignore traefik hsts websecure certresolver
   default (printf "${project_name}-%s-https" $service) -}}
 {{- $to := .Get "to" |
   default (printf "${project_name}-%s-service@docker" $service) -}}
-{{- $rule := .Get "rule" | default (printf "Host(\\`%s\\`)" $domain) -}}
+{{- $rule := .Get "rule" | default (printf "Host(`%s`)" $domain) -}}
 
 {{- if or (not $service) (not $domain) (not $middlewares) (not $name) (not $to)
   (not $rule) (gt (.Params | len) 7) -}}
@@ -49,15 +49,15 @@ cSpell:ignore traefik hsts websecure certresolver
 {{- end -}}
 
 Add a _Traefik_ router named `{{ $name }}@docker`{{ $for }},
-routing HTTPS queries to the `websecure` entrypoint matching `{{ $rule }}`
-to the _Traefik_'s service named `{{ $to }}`:
+routing HTTPS queries to the `websecure` entrypoint matching
+``{{ $rule }}`` to the _Traefik_'s service named `{{ $to }}`:
 
 ```bash
 {{ partialCached "docker/yq-compose-file.md" . }} <<EOF
 ${labels_node:-".services.{{ $service }}.labels"} |= . + {
   "traefik.http.routers.{{ $name }}.entrypoints": "websecure,web",
   "traefik.http.routers.{{ $name }}.service": "{{ $to }}",
-  "traefik.http.routers.{{ $name }}.rule": "{{ $rule }}",
+  "traefik.http.routers.{{ $name }}.rule": "{{ replace $rule "`" "\\`" }}",
 {{- if $middlewares }}
   "traefik.http.routers.{{ $name }}.middlewares": "{{ $middlewares }}",
 {{- end}}

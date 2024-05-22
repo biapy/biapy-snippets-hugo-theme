@@ -22,8 +22,8 @@ Allow the container's user to read secrets files:
 
 ```bash
 sudo --validate &&
-  for secret in (
-    {{- range $name := .Params }} "{{ $name }}"{{ end }} ); do
+  for secret in
+    {{- range $name := .Params }} "{{ $name }}"{{ end }}; do
     secret_file="${compose_project_path}/secrets/${secret}.secret"
     [[ -e "${secret_file}" ]] && sudo chown "${container_uid}" "${secret_file}"
   done

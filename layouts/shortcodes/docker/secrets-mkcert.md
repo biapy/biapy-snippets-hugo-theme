@@ -1,7 +1,7 @@
 {{/*
 
-Generate a self-signed certificate using mkcert, and store it in
-Docker Compose project's secrets folder.
+Generate a locally trusted certificate using mkcert,
+and store it in Docker Compose project's secrets folder.
 
 Usage:
 
@@ -40,7 +40,8 @@ or, with a custom description:
 {{ with .Get "description" -}}
 {{ . }}
 {{- else -}}
-Create the service's SSL/TLS certificate:
+Use `mkcert` to create a locally signed SSL/TLS certificate to encrypt
+communications over Docker's networks:
 {{- end }}
 
 ```bash

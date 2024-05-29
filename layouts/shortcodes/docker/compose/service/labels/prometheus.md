@@ -51,7 +51,7 @@ Enable Prometheus scrape of the `{{ $service }}` service's
 | ${labels_node:-".services.{{ $service }}.labels"}."prometheus-metrics-path" = "{{ $metrics_path }}"
 {{- range $name, $value := .Params }}
 {{- if not (eq $name "service" "job" "address" "scheme" "metrics-path" "metrics_path") }}
-| ${labels_node:-".services.{{ $service }}.labels"}."prometheus-metrics-{{ $name }}" = "{{ $value }}"
+| ${labels_node:-".services.{{ $service }}.labels"}."prometheus-{{ $name }}" = "{{ $value }}"
 {{- end }}
 {{- end }}
 EOF

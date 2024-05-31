@@ -24,7 +24,7 @@ Allow the current user's default group to read secrets files:
 
 ```bash
 for secret in
-  {{- range $name := .Params }} "{{ $name }}"{{ end }}; do
+  {{- range $name := . }} "{{ $name }}"{{ end }}; do
   secret_file="${compose_project_path}/secrets/${secret}.secret"
   [[ -e "${secret_file}" ]] &&
     command chmod 'go-rw,g+r' "${secret_file}" &&

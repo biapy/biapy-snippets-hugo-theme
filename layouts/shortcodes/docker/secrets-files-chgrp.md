@@ -25,7 +25,7 @@ Allow the container's group to read secrets files:
 ```bash
 sudo --validate &&
   for secret in
-    {{- range $name := .Params }} "{{ $name }}"{{ end }}; do
+    {{- range $name := . }} "{{ $name }}"{{ end }}; do
     secret_file="${compose_project_path}/secrets/${secret}.secret"
     [[ -e "${secret_file}" ]] &&
       sudo chgrp "${container_gid}" "${secret_file}" &&

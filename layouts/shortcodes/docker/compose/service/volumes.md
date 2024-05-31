@@ -43,13 +43,10 @@ Declare mount points of the `{{ $service }}` service's volumes:
 .services.{{ $service }}.volumes |= . + [
 {{- if $timezone }}
   "/etc/timezone:/etc/timezone:ro",
-  "/etc/localtime:/etc/localtime:ro",
+  "/etc/localtime:/etc/localtime:ro"
 {{- end }}
-{{- $firstVolume := true }}
-{{- range $volume := $volumes }}
-  {{- if not $firstVolume -}} , {{- end }}
+{{- range $volume := $volumes }},
   "{{ $volume }}"
-  {{- $firstVolume = false }}
 {{- end }}
 ]
 EOF

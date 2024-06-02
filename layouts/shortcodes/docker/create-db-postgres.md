@@ -6,12 +6,14 @@ Usage:
 
 {{% docker/create-db-postgres %}}
 
+cSpell:ignore postgres psql NOCREATEDB NOCREATEROLE NOSUPERUSER
+
 */}}
 
 Create the software's PostgreSQL database:
 
 ```bash
-command docker compose --file "${compose_path}/postgres/docker-compose.yml" \
+command docker compose --file "${compose_path}/postgres/compose.yml" \
   exec 'postgres' \
   psql --username="${postgres_username:-postgres}" 'postgres' --password \
   --command="CREATE ROLE \"${db_username}\" PASSWORD '${db_password}'

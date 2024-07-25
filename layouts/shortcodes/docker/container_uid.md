@@ -30,7 +30,7 @@ Detect the `{{ $user }}` user's id in the `{{ $image }}` _Docker_ image:
 
 ```bash
 container_uid="$(docker run --rm --entrypoint='/usr/bin/id' \
-  "{{ $image }}" -u "{{ $user }})"
+  "{{ $image }}" -u "{{ $user }}")"
 ```
 
 {{ else }}

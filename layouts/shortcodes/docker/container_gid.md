@@ -30,7 +30,7 @@ Detect the `{{ $group }}` group's id in the `{{ $image }}` _Docker_ image:
 
 ```bash
 container_gid="$(docker run --rm --entrypoint='/usr/bin/id' \
-  "{{ $image }}" -g "{{ $group }})"
+  "{{ $image }}" -g "{{ $group }}")"
 ```
 
 {{ else }}

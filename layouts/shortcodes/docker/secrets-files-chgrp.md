@@ -29,7 +29,7 @@ sudo --validate &&
     secret_file="${compose_project_path}/secrets/${secret}.secret"
     [[ -e "${secret_file}" ]] &&
       sudo chgrp "${container_gid}" "${secret_file}" &&
-      sudo chmod g+r "${secret-file}"
+      sudo chmod g+r "${secret_file}"
   done
 ```
 

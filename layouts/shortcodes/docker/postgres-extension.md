@@ -10,6 +10,8 @@ or:
 
 {{% docker/postgres-extension name="hstore" %}}
 
+CSpell:ignore postgres hstore psql dbname
+
 */}}
 {{ $name := .Get "name" | default (.Get 0) }}
 {{- if (not $name) -}}
@@ -23,8 +25,8 @@ or:
 Enable `{{ $name }}` PostgreSQL extension for the database:
 
 ```bash
-command docker compose --file "${compose_path}/postgres/docker-compose.yml" \
+command docker compose --file "${compose_path}/postgres/compose.yml" \
   exec 'postgres' \
-  psql --username="${postgres_username:-postgres}" 'postgres' --password \
+  psql --username="${postgres_username:-postgres}" --password \
     --dbname="${db_name}" --command="CREATE EXTENSION {{ $name }};"
 ```

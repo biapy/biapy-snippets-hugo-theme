@@ -9,12 +9,12 @@ Usage:
 
 or
 
-{{% docker/compose/service/labels/watchtower service="service-name"
+{{% docker/compose/service/labels/prometheus service="service-name"
   job="job-name" address="service-name:9090" %}}
 
 or
 
-{{% docker/compose/service/labels/watchtower service="service-name"
+{{% docker/compose/service/labels/prometheus service="service-name"
   job="job-name" instance= "example.domain.com"
   address="service-name:9090" scheme="https" metrics-path="/metrics"
   scrape-interval="5s" scrape-timeout="4s"

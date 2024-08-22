@@ -25,7 +25,7 @@ Declare the secrets this Compose file's services use:
 {{ partialCached "docker/yq-compose-file.md" . }} <<EOF
   .secrets |= . + {}
 {{- range $name := .Params }}
-| .secrets.{{ $name }}.file = "secrets/{{ $name }}.secret"
+| .secrets."{{ $name }}".file = "secrets/{{ $name }}.secret"
 {{- end }}
 EOF
 ```

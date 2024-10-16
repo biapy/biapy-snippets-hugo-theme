@@ -55,7 +55,7 @@ routing HTTPS queries to the `websecure` entrypoint matching
 ```bash
 {{ partialCached "docker/yq-compose-file.md" . }} <<EOF
 ${labels_node:-".services.{{ $service }}.labels"} |= . + {
-  "traefik.http.routers.{{ $name }}.entrypoints": "websecure,web",
+  "traefik.http.routers.{{ $name }}.entrypoints": "websecure",
   "traefik.http.routers.{{ $name }}.service": "{{ $to }}",
   "traefik.http.routers.{{ $name }}.rule": "{{ replace $rule "`" "\\`" }}",
 {{- if $middlewares }}

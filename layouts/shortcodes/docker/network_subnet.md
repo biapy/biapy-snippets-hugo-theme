@@ -8,7 +8,8 @@ Usage:
 
 {{% docker/network_subnet name="example_subnet" network="example-net" %}}
 
-cSpell:ignore subnetwork IPAM
+<!-- CSpell:ignore subnetwork IPAM readarray println -->
+<!-- vale RedHat.Spacing = NO -->
 
 */}}
 {{- $name := .Get "name" | default (.Get 0 | default false) -}}
@@ -23,7 +24,20 @@ cSpell:ignore subnetwork IPAM
 
 Detect `{{ $network }}` subnetwork:
 
+{{/*
+
 ```bash
 {{ $name }}="$(command docker network inspect \
     --format "{{ "{{" }}(index .IPAM.Config 0).Subnet}}" "{{ $network }}")"
+```
+
+*/}}
+
+```bash
+readarray -t "{{ $name }}" < <(
+  command docker network inspect \
+    --format "{{ "{{" }}range .IPAM.Config}}{{ "{{" }}println .Subnet}}{{ "{{" }}end}}" \
+    "{{ $network }}" |
+    command grep -v '^$'
+)
 ```

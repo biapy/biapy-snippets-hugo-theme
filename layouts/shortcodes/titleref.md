@@ -11,6 +11,7 @@ or:
 {{< titleref path="path/page.md" >}}
 
 <!-- CSpell:ignore titleref -->
+<!-- markdownlint-disable reference-links-images -->
 
 */}}
 {{- $path := .Get "path" | default (.Get 0 | default false) -}}
@@ -20,7 +21,7 @@ or:
   -}}
 {{- end -}}
 {{- with .Site.GetPage $path -}}
-<a href="{{ .Permalink }}">{{ .Title }}</a>
+[{{ .Title }}]({{ .Permalink }})
 {{- else -}}
 {{ errorf "The %q shortcode reference a missing page. See %s" .Name .Position }}
 {{- end -}}

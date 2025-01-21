@@ -4,11 +4,11 @@ Generate a link to a page, with page title as link text.
 
 usage:
 
-{{< titleref "path/page.md" >}}
+{{% title-ref "path/page.md" %}}
 
 or:
 
-{{< titleref path="path/page.md" >}}
+{{% title-ref path="path/page.md" %}}
 
 <!-- CSpell:ignore titleref -->
 <!-- markdownlint-disable reference-links-images -->

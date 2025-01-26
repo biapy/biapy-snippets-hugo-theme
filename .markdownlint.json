@@ -434,7 +434,7 @@
     "style": "---"
   },
   "line-length": {
-    "strict": true,
+    "stern": false,
     "code_blocks": false
   },
   "link-image-style": {

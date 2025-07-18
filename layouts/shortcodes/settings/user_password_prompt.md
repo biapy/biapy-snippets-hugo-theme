@@ -10,17 +10,19 @@ usage:
   username="admin"
   zerogen="false" %}}
 
+CSpell:ignore zerogen
+
 */}}
-{{ $prefix := .Get "prefix" }}
-{{ $name := .Get "name" }}
-{{ $username := .Get "username" | default "admin" }}
-{{ $random_desc := "" }}
-{{ $random_prompt := "" }}
-{{ $random_action := "" }}
+{{- $prefix := .Get "prefix" -}}
+{{- $name := .Get "name" -}}
+{{- $username := .Get "username" | default "admin" -}}
+{{- $random_desc := "" -}}
+{{- $random_prompt := "" -}}
+{{- $random_action := "" -}}
 {{- if not ( eq (.Get "zerogen") "false" ) -}}
-  {{ $random_desc = " (optional, randomly generated if not provided)" }}
-  {{ $random_prompt = " (leave empty to generate a random password)" }}
-  {{ $random_action = " A random password will be generated." }}
+  {{- $random_desc = " (optional, randomly generated if not provided)" -}}
+  {{- $random_prompt = " (leave empty to generate a random password)" -}}
+  {{- $random_action = " A random password will be generated." -}}
 {{- end -}}
 
 Set the {{$name}} username:
@@ -43,3 +45,5 @@ command read -s -p 'Enter '${{ "{" }}{{$prefix}}username}' account password{{$ra
     fi
   fi
 ```
+
+{{- "" -}}

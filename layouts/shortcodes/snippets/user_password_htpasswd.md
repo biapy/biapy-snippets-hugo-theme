@@ -1,5 +1,5 @@
-{{ $prefix := .Get "prefix" }}
-{{ $name := .Get "name" | default "the software" }}
+{{- $prefix := .Get "prefix" -}}
+{{- $name := .Get "name" | default "the software" -}}
 
 Generate a `htpasswd` entry for {{ $name }}:
 
@@ -8,3 +8,5 @@ Generate a `htpasswd` entry for {{ $name }}:
   command htpasswd -niB "${{ "{" }}{{$prefix}}username}" <<< "${{ "{" }}{{$prefix}}password}"
 )"
 ```
+
+{{- "" -}}

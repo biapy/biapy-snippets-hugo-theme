@@ -14,9 +14,10 @@ Usage:
     .Name .Position
   -}}
 {{- end -}}
-
 Set the `compose.yml` path:
 
 ```bash
 compose_file="${compose_project_path}/compose.yml"
 ```
+
+{{- "" -}}
